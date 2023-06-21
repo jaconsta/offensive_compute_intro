@@ -1,0 +1,19 @@
+syntax = "proto3";
+package c2grpcapi;
+option go_package = "simple_proxy/remote_admin_tool/c2grpcapi";
+
+service Embed {
+    rpc GetCommand (Empty) returns (Command);
+    rpc SendResult (Command) returns (Empty);
+}
+
+service Admin {
+    rpc ExecuteCommand (Command) returns (Command);
+}
+
+message Command {
+    string Input = 1;
+    string Output = 2;
+}
+
+message Empty{}
